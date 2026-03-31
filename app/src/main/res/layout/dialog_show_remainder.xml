@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    style="@style/CustomAlertDialog"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_rounded"
+    tools:context=".activity.ReminderDialogActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <WebView
+        android:id="@+id/three_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClose"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+       />
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:src="@drawable/ic_cancel"
+        android:layout_width="40dp"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/vivid_sky_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:text="close"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:tint="@color/vivid_sky_blue" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="@dimen/_14sdp"
+        android:id="@+id/tvTitle"
+        android:gravity="center"
+        android:backgroundTint="@color/white"
+        android:visibility="gone"
+        android:textColor="@color/textcolor"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/three_webview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/_10sdp"/>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnClose"
+        app:layout_constraintBottom_toTopOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:indeterminate="true"
+        style="@style/ReminderDialogTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

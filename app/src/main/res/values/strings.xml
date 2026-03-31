@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ReminderApp</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="title">Title</string>
+    <string name="setTime">Set Time</string>
+    <string name="setDate">Set Date</string>
+    <string name="done">Done</string>
+    <string name="SetReminderLang">Set Reminder Language</string>
+    <string name="ADD_Reminder">Add Reminder</string>
+    <string name="dateandtime">Date and Time</string>
+</resources>

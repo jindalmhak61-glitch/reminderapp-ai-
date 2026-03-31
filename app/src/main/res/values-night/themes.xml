@@ -1,0 +1,71 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ReminderApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/vivid_sky_blue</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.ReminderApp" parent="Base.Theme.ReminderApp" />
+
+    <style name="dialog_round" parent="Theme.AppCompat.Dialog">
+        <item name="cornerRadius">@dimen/_5sdp</item>
+        <item name="background">@color/white</item>
+    </style>
+    <style name="CalendarHeaderText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalendarWeekText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalendarDateText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <style name="CustomDatePickerTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Use your app’s colors -->
+        <item name="colorPrimary">@color/theme_primary</item>
+        <item name="colorOnPrimary">@color/textcolor</item>
+        <item name="colorAccent">@color/theme_primary</item>
+        <item name="android:colorAccent">@color/theme_primary</item>
+        <item name="android:windowBackground">@drawable/dialog_rounded</item>
+        <item name="android:background">@android:color/transparent</item>
+
+        <!-- Buttons and text -->
+        <item name="android:textColor">@color/textcolor</item>
+        <item name="android:buttonTint">@color/theme_primary</item>
+        <!--        <item name="buttonBarPositiveButtonStyle">@style/DatePickerDialogButton</item>-->
+        <!--        <item name="buttonBarNegativeButtonStyle">@style/DatePickerDialogButton</item>-->
+    </style>
+
+    <style name="DatePickerDialogButton" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/theme_primary</item>
+    </style>
+
+    <style name="CustomTimePickerTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- App color palette -->
+        <item name="colorPrimary">@color/theme_primary</item>
+        <item name="colorAccent">@color/theme_primary</item>
+        <item name="android:colorAccent">@color/theme_primary</item>
+        <item name="android:windowBackground">@drawable/dialog_rounded</item>
+        <item name="android:background">@android:color/transparent</item>
+
+        <!-- Button + text -->
+        <item name="android:textColor">@color/textcolor</item>
+        <item name="android:buttonTint">@color/theme_primary</item>
+        <item name="buttonBarPositiveButtonStyle">@style/TimePickerDialogButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/TimePickerDialogButton</item>
+    </style>
+
+    <style name="TimePickerDialogButton" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/theme_primary</item>
+    </style>
+
+
+</resources>

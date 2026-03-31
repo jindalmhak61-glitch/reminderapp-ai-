@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="vivid_sky_blue">#C43347</color>
+    <color name="textcolor">#474646</color>
+    <color name="sky_blue">@color/vivid_sky_blue</color>
+    <color name="hintcolor">#B8B6B6</color>
+    <color name="light_vivid_sky_blue">#D6707E</color>
+
+    <color name="theme_primary">@color/vivid_sky_blue</color>
+        <color name="theme_on_primary">#FFFFFF</color>
+
+</resources>

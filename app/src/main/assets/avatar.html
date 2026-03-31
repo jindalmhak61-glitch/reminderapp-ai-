@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Avatar with FBX Animations + Lipsync + Toast</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(180deg, #D6707E 0%, #D6707E 100%);
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-family: sans-serif;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 9999;
+            max-width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= TOAST UI ================= -->
+<div id="toast"></div>
+
+<!-- ================= THREE IMPORT MAP ================= -->
+<script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+</script>
+
+<!-- ================= THREE SCRIPT ================= -->
+<script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+
+    let scene, camera, renderer;
+    let avatar, mixer, currentAction;
+    const animations = {};
+    const clock = new THREE.Clock();
+
+    // -------- Lip Sync --------
+    let mouthTargets = [];
+    let mouthTime = 0;
+
+    window.avatarState = { talking: false };
+
+
+    // ================= SCENE =================
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        100
+    );
+    camera.position.set(0, 1.35, 1.6);
+    camera.lookAt(0, 1.2, 0);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 0);
+    document.body.appendChild(renderer.domElement);
+
+    // ================= LIGHTS =================
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(1, 1, 1);
+    scene.add(dirLight);
+
+    // ================= LOADERS =================
+    const gltfLoader = new GLTFLoader();
+    const fbxLoader = new FBXLoader();
+
+    // ================= LOAD AVATAR =================
+    gltfLoader.load('models/avatar.glb', (gltf) => {
+        avatar = gltf.scene;
+        scene.add(avatar);
+
+        mixer = new THREE.AnimationMixer(avatar);
+
+        // ---- Detect mouth morph targets ----
+        avatar.traverse((node) => {
+            if (node.isMesh && node.morphTargetDictionary) {
+                const dict = node.morphTargetDictionary;
+                const candidates = [
+                    'viseme_aa',
+                    'viseme_AA',
+                    'mouthOpen',
+                    'Mouth_Open',
+                    'jawOpen'
+                ];
+
+                for (const name of candidates) {
+                    if (dict[name] !== undefined) {
+                        mouthTargets.push({
+                            mesh: node,
+                            index: dict[name]
+                        });
+                        console.log('Mouth morph found:', name);
+                        break;
+                    }
+                }
+            }
+        });
+
+        // ---- Load animations AFTER avatar ----
+        loadAnimation('idle', 'models/Waving.fbx');
+        loadAnimation('talking', 'models/Talking_1.fbx');
+    });
+
+    // ================= LOAD FBX ANIMATION =================
+    function loadAnimation(name, path) {
+        fbxLoader.load(path, (fbx) => {
+
+            fbx.scale.setScalar(0.01);
+
+            const clip = fbx.animations[0];
+            const action = mixer.clipAction(clip);
+
+            action.loop = THREE.LoopRepeat;
+            action.enabled = true;
+
+            animations[name] = action;
+
+            if (name === 'idle') {
+                action.play();
+                currentAction = action;
+            }
+        });
+    }
+
+    // ================= STATE SWITCH =================
+    window.setTalkingStatus = function (value) {
+        const isTalking = value === true || value === "true";
+        window.avatarState.talking = isTalking;
+
+        const nextAction = animations[isTalking ? 'talking' : 'idle'];
+        if (!nextAction || currentAction === nextAction) return;
+
+        nextAction.reset().fadeIn(0.4).play();
+        if (currentAction) currentAction.fadeOut(0.4);
+
+        currentAction = nextAction;
+    };
+
+    // ================= RENDER LOOP =================
+    function animate() {
+        requestAnimationFrame(animate);
+
+        const delta = clock.getDelta();
+        if (mixer) mixer.update(delta);
+
+        // ---- Lip movement ----
+        if (mouthTargets.length > 0) {
+            if (window.avatarState.talking) {
+                mouthTime += delta * 15;
+                const value = (Math.sin(mouthTime) + 1) / 2;
+                mouthTargets.forEach(t => {
+                    t.mesh.morphTargetInfluences[t.index] = value;
+                });
+            } else {
+                mouthTargets.forEach(t => {
+                    t.mesh.morphTargetInfluences[t.index] = 0;
+                });
+            }
+        }
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // ================= RESIZE =================
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+
+</script>
+
+</body>
+</html>

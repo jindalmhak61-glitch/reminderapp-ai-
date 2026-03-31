@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="10dp"
+    android:insetRight="10dp"
+    android:insetTop="10dp"
+    android:insetBottom="10dp">
+
+    <shape android:shape="rectangle">
+        <!-- Your desired background color -->
+        <solid android:color="@color/white" />
+
+        <!-- Rounded corners -->
+        <corners android:radius="16dp" />
+
+        <!-- Optional elevation shadow -->
+        <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp" />
+    </shape>
+</inset>
