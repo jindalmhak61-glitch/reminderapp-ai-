@@ -33,18 +33,51 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Join our cafeteria community"
-                android:textColor="#474646"
-                android:textSize="14sp"
-                android:layout_marginBottom="24dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Full Name"
+                app:boxStrokeColor="#C43347"
+                app:hintTextColor="#C43347"
+                app:startIconTint="#C43347"
+                app:startIconDrawable="@android:drawable/ic_menu_edit">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="40dp"
+                    android:inputType="textPersonName"
+                    android:textColor="#474646" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Phone Number"
+                app:boxStrokeColor="#C43347"
+                app:hintTextColor="#C43347"
+                app:startIconTint="#C43347"
+                app:startIconDrawable="@android:drawable/ic_menu_call">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="40dp"
+                    android:inputType="phone"
+                    android:textColor="#474646" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:hint="Email Address"
                 app:boxStrokeColor="#C43347"
                 app:hintTextColor="#C43347"
@@ -75,9 +108,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
-                    android:paddingStart="40dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:paddingStart="40dp"
                     android:textColor="#474646" />
             </com.google.android.material.textfield.TextInputLayout>
 

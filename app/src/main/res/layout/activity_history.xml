@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My History"
+            android:text="Study History"
             android:textSize="24sp"
             android:fontFamily="sans-serif-black"
             android:textColor="#C43347" />
@@ -30,18 +30,31 @@
             android:textColor="#EF4444" />
     </RelativeLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvHistoryContent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="No history found."
-            android:textColor="#334155"
-            android:textSize="15sp"
-            android:lineSpacingExtra="6dp" />
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="20dp" />
 
-    </androidx.core.widget.NestedScrollView>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="No study plans found."
+            android:textColor="#64748B"
+            android:visibility="gone" />
+    </FrameLayout>
 </LinearLayout>

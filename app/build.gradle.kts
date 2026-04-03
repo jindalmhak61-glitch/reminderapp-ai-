@@ -31,12 +31,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures.viewBinding = true
 }
@@ -48,6 +48,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("com.google.firebase:firebase-firestore:26.0.2")
     implementation("androidx.activity:activity:1.12.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.7")
     testImplementation("junit:junit:4.13.2")
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
     implementation("com.google.firebase:firebase-analytics")
@@ -85,6 +87,8 @@ dependencies {
 
     implementation("com.google.firebase:firebase-database")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    implementation("org.apache.poi:poi-ooxml:5.2.3")
 
 
 }

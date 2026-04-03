@@ -155,10 +155,23 @@
 
 
     <Button
+        android:id="@+id/admin_button"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:text="Admin Screen"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#C43347"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toTopOf="@id/getStartedBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
         android:id="@+id/getStartedBtn"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:text="Get Started"
+        android:text="Normal User"
         android:textSize="16sp"
         android:textColor="#FFFFFF"
         android:backgroundTint="#C43347"

@@ -8,4 +8,8 @@
     <string name="SetReminderLang">Set Reminder Language</string>
     <string name="ADD_Reminder">Add Reminder</string>
     <string name="dateandtime">Date and Time</string>
+    <string name="title_activity_admin">AdminActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
